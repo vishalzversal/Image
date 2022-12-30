@@ -1,5 +1,5 @@
 {
-  "name": "image-test",
+  "name": "@vishalzversal/test-image",
   "version": "1.0.0",
   "description": "",
   "main": "./build/index.js",
