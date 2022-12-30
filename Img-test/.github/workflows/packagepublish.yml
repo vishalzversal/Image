@@ -1,0 +1,22 @@
+name: Publish next package
+on:
+  push:
+    tags:
+      - "publish-next*"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./test-image/
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "16.x"
+          registry-url: "https://npm.pkg.github.com"
+      - run: npm install --legacy-peer-deps
+      - run: npm run build
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
